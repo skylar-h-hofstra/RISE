@@ -68,16 +68,18 @@ img {
   justify-content: center;
 }
 
-#searchbar {
-  flex-grow: 5;
+div #searchbar { /* two-level selector to override "#header div" style priority */
+  flex-grow: 6;
   max-width: none;
   justify-content: flex-start;
+  border-radius: 5em; /* perfectly rounded corners even if search bar somehow becomes very tall */
 }
 
 #content {
-  display: flex;
-  height: 100%;
-  flex: 1 1 auto;
+  display: grid;
+  grid-auto-columns: min(25%, 400px) 1fr;
+  grid-auto-rows: 1fr;
+  flex: 1 1 100%;
 }
 
 #content > div {
@@ -88,7 +90,6 @@ img {
   display: flex; /* flexbox container */
   flex: 1 1 auto;
   height: 100%;
-  max-width: 400px;
   background-color: var(--sidebar-bg);
   color: var(--sidebar-text-color);
   box-sizing: border-box;
@@ -122,7 +123,7 @@ img {
 #content-main {
   display: flex; /* flexbox container */
   flex-direction: column; /* child items go top->bottom */
-  flex: 3;
+  grid-column-start: 2;
   height: 100%;
   box-sizing: border-box;
 }
@@ -238,16 +239,17 @@ button {
 
 @media all and (max-width: 1000px) { /* on thinner displays, put sidebar above main content (weird layout-wise, but better than an ultra-thin sidebar). */
   #content {
-    flex-wrap: wrap;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 1fr 1fr;
   }
   
   #sidebar {
-    flex: 1 1 100%; /* force 100% width */
     max-width: 100%; /* overwrite sidebar max-width */
     height: auto; /* overwrite sidebar height */
   }
 
   #content-main {
-    flex: 3 1 100%; /* force 100% width */
+    grid-row-start: 2;
+    grid-column-start: 1; /* overwrite content column-start */
   }
 }
