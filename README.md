@@ -1,7 +1,30 @@
 # RISE
+Ideal Workflows: Staggering refers to multiple calls by a given item
 
-Key: H = Heading, T = Task, F = Function, 'XXX' = Completed
+- run() //called on creation of website instance
+  - run_backend()
+    - pull_ticker_list()
+    - push_ticker_list()
+    - make_database()
+    - push_database()
+      - interpret_JSON()
+        - pull_data()
+  - run_frontend()
+    - initialize_website()
+      - pull_stored_data()
+      - get_stock_price()
+      - get_stock_info()
+      - get_stock_news()
+      - get_stock_info_time()
+      - get_stock_graph() //mutually exclusive with get_stock_history()
+      - get_stock_history() //mutually exclusive with get_stock_graph()
+    - Each Location where data is necessary will call respective display functions (to update displays)
+
+
+Key: H = Heading, T = Task, F = Function, 'X' = Completed
+
 Tasks and Functions Outline:
+
 - [ ] H1 - Test API
   - [ ] T1.1 - Create test_folder/ directory for Testing
   - [ ] T1.2 - Install libraries needed for API
@@ -43,7 +66,7 @@ Tasks and Functions Outline:
   - [ ] T3.5 - Test make_database() and push_database()
     - [ ] F3.5.1 - Write unit test for make_database() and attempt to make multiple instances of databases by calling make_database() multiple times
     - [ ] F3.5.2 - Write unit test for push_database() that uses sample_API_output.json from T2.4.1 to test uploading interpreted JSOn data to database
-    - [ ] F3.5.3 - Write unit test for push_database() that uploads data from API from pull_data() => interpret_JSON => push_database()
+    - [ ] F3.5.3 - Write unit test for push_database() that uploads data from API from pull_data() => interpret_JSON() => push_database()
     - [ ] T3.5.4 - If unit tests fail, review functions and MongoDB documentation to debug and modify functions
   - [ ] T3.6 - Debug and Create Module
     - [ ] T3.6.1 - If any unit tests are failed, look into MongoDB documentation or associated function procedure
@@ -93,6 +116,7 @@ Tasks and Functions Outline:
     - [ ] F6.1.3 - Write backend_run() which calls all necessary backend functions to initialize website
     - [ ] F6.1.4 - Write frontend_run() which calls all necessary frontend functions to initialize website
     - [ ] F6.1.5 - Write run() which calls both backend_run() and frontend_run() and start_clock()
+    - [ ] F6.1.6 - Write initialize_website() which calls all the getter scripts initially
   - [ ] T6.2 Updating Display
     - [ ] T6.2.1 - Website should maintain an internal clock that triggers event based on tick intervals
     - [ ] F6.2.2 - Write start_clock() which maintains an internal timer for the website instance
@@ -103,10 +127,5 @@ Tasks and Functions Outline:
   - [ ] T7.2 - Saved Lists for User
   - [ ] T7.3 - UI Color Scheme Selector
   - [ ] T7.4 - Advanced Analytics Option (requires a settings option)
-
-     
-     F4.4._ - Write update_display() which is contantly called while the webpage is initialized sch that there is a clock cycle that times the following calls
-     
-
 
      
