@@ -26,10 +26,10 @@ Key: H = Heading, T = Task, F = Function, 'X' = Completed
 Tasks and Functions Outline:
 
 - [ ] H1 - Test API
-  - [ ] T1.1 - Create test_folder/ directory for Testing
-  - [ ] T1.2 - Install libraries needed for API
-  - [ ] T1.3 - Testing Data Pulls
-    - [ ] T1.3.1 - Create File and include all imports necessary
+  - [X] T1.1 - Create test_folder/ directory for Testing
+  - [X] T1.2 - Install libraries needed for API
+  - [X] T1.3 - Testing Data Pulls
+    - [X] T1.3.1 - Create File and include all imports necessary
     - [ ] F1.3.2 - Write function pull_data() which makes a call to the API Function and returns data to terminal or file
     - [ ] T1.3.3 - Cross-check with API README.md to confirm data is pulled correctly
     - [ ] T1.3.4 - Cross-check during open market hours to ensure data is accurate and real-time
@@ -74,11 +74,11 @@ Tasks and Functions Outline:
     - [ ] T3.6.3 - Review with at least 2 members of the team before confirming completion of section
 
 - [ ] H4 - Create Website Outline
-  - [ ] T4.1 - Create frontend_files/ directory
-  - [ ] T4.2 - Create index.html and styles.css and add HTML Boilerplate
-  - [ ] T4.3 - Outline Website Framework
-    - [ ] T4.3.1 - Using Flexbox methodology, outline the Website according to the Requirements Specification Document
-    - [ ] T4.3.2 - Style each div using id and class tags and create vars in CSS to standardize certain design patterns
+  - [X] T4.1 - Create frontend_files/ directory
+  - [X] T4.2 - Create index.html and styles.css and add HTML Boilerplate
+  - [X] T4.3 - Outline Website Framework
+    - [X] T4.3.1 - Using Flexbox methodology, outline the Website according to the Requirements Specification Document
+    - [X] T4.3.2 - Style each div using id and class tags and create vars in CSS to standardize certain design patterns
   - [ ] T4.4 - Getter Scripts ***NEEDS TO BE EXPANDED***
     - [ ] T4.4.1 - Using Javascript or JS Framework, outline the following functions:
     - [ ] F4.4.2 - Write pull_stored_data() which pulls data from the MongoDB Database made for the website
