@@ -128,4 +128,8 @@ Tasks and Functions Outline:
   - [ ] T7.3 - UI Color Scheme Selector
   - [ ] T7.4 - Advanced Analytics Option (requires a settings option)
 
+
+- [ ] H8 - Date Milestones
+  - [ ] T8.1 - Demo Day 08/31/2023
+  - [ ] T8.2 - Presentation Day 
      
