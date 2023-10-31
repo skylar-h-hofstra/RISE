@@ -2,6 +2,7 @@ import re
 import json
 from urllib import request
 from urllib.request import Request, urlopen
+import time
 
 #url_main = "https://finance.yahoo.com/quote/{}?p={}"
 #url_hisorical = "https://finance.yahoo.com/quote/{}/history?p={}"
@@ -11,7 +12,7 @@ from urllib.request import Request, urlopen
 
 url = "https://query1.finance.yahoo.com/v8/finance/chart/{}?region=US&lang=en-US&includePrePost=false&interval=2m&useYfid=true&range=1d&corsDomain=finance.yahoo.com&.tsrc=finance"
 
-stock = "AAPL"
+stock = "TSLA"
 
 def get_price(stock):
     request_site = Request(url.format(stock), headers={"User-Agent":"Mozilla/5.0"})
@@ -36,17 +37,18 @@ def pass_result(d):
 def pass_meta(d2):
     d3 = DummyClass()
     d3.__dict__ = d2.result[0]
-    #print(d3.meta)
+    print(d3.meta)
     get_regularMarketPrice(d3)
 
 def get_regularMarketPrice(d3):
     d4 = DummyClass()
     d4.__dict__ = d3.meta
-    print(d4.regularMarketPrice)
+    #print(d4.regularMarketPrice)
 
 def live_data_feed(stock):
     while True:
         get_price(stock)
+        time.sleep(1)
 
 
 
