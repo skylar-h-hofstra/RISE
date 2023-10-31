@@ -1,17 +1,27 @@
 :root {
-  --sidebar-bg: #555;
+  --sidebar-bg: #09c;
   --sidebar-text-color: #fff;
-  font-family: sans-serif; /* default page font */
+  --border-color: var(--sidebar-bg); /* in case we want to uncouple them in the future */
+  --border-thickness: 2px;
   --content-padding: 16px;
   --standard-gap: 8px;
+
+  font-family: sans-serif; /* default page font */
 }
 
 div { /*For Debugging*/
   /* border: 2px solid green; */
 }
 
-#page {
-  display: flex; /* flexbox container */
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+}
+
+/*#page {
+  display: flex;
   flex-direction: column;
   position: fixed;
   top: 0;
@@ -19,16 +29,21 @@ div { /*For Debugging*/
   height: 100%;
   width: 100%;
   justify-content: center;
-}
+}*/
 
 #header {
   display: flex;
   flex: 0 0 auto;
+  gap: 0.75em;
+  border-bottom: var(--border-thickness) solid var(--sidebar-bg);
+  padding: 0.5em;
 }
 
 #footer {
   display: flex;
   flex: 0 0 auto;
+  border-top: var(--border-thickness) solid var(--sidebar-bg);
+  padding: 1em 0.5em;
 }
 
 img {
@@ -38,29 +53,33 @@ img {
 
 #header div {
   height: 4em;
-  width: 100%;
   /* border-bottom: 3px solid var(--sidebar-bg); */
   padding: 0.5em 1em;
   box-sizing: border-box;
+  border: var(--border-thickness) solid var(--border-color);
+  border-radius: 5px;
   display: flex;
   align-items: center;
 }
 
 #logo, #description, #contact, #account {
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   max-width: fit-content;
   justify-content: center;
 }
 
-#searchbar {
-  flex: 6 1 auto;
+div #searchbar { /* two-level selector to override "#header div" style priority */
+  flex-grow: 6;
   max-width: none;
   justify-content: flex-start;
+  border-radius: 5em; /* perfectly rounded corners even if search bar somehow becomes very tall */
 }
 
 #content {
-  display: flex;
-  flex: auto;
+  display: grid;
+  grid-auto-columns: min(25%, 400px) 1fr;
+  grid-auto-rows: 1fr;
+  flex: 1 1 100%;
 }
 
 #content > div {
@@ -69,9 +88,8 @@ img {
 
 #sidebar {
   display: flex; /* flexbox container */
-  flex: 1;
+  flex: 1 1 auto;
   height: 100%;
-  max-width: 400px;
   background-color: var(--sidebar-bg);
   color: var(--sidebar-text-color);
   box-sizing: border-box;
@@ -84,7 +102,7 @@ img {
   flex-direction: column;
   align-items: center;
   flex: auto;
-  margin: 0px;
+  margin: 0;
 }
 
 .sidebar-list li {
@@ -93,6 +111,9 @@ img {
   width: 100%;
   justify-content: space-around;
   align-items: center;
+  margin: 0.5em;
+  border: var(--border-thickness) solid #fff;
+  border-radius: 5px;
 }
 
 .sidebar-list li div {
@@ -102,8 +123,9 @@ img {
 #content-main {
   display: flex; /* flexbox container */
   flex-direction: column; /* child items go top->bottom */
-  flex: 3;
+  grid-column-start: 2;
   height: 100%;
+  box-sizing: border-box;
 }
 
 .content-header {
@@ -148,6 +170,9 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+  border: var(--border-thickness) solid var(--border-color);
+  border-radius: 10px;
 }
 
 .display-graph-options {
@@ -172,10 +197,12 @@ button {
 }
 
 .data-wrap-container {
-  flex: 5 1 auto;
+  flex: 2 1 auto;
   display: flex;
   flex-wrap: wrap;
+  gap: 1em;
   align-content: stretch;
+  margin-bottom: 1em;
 }
 
 .data-item {
@@ -185,11 +212,16 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  padding: 1em;
+  border: var(--border-thickness) solid var(--border-color);
+  border-radius: 5px;
 }
 
 .display-news-container {
   flex: 1 1 auto;
   display: flex;
+  gap: 1em;
   justify-content: center;
   align-items: center;
 }
@@ -199,20 +231,25 @@ button {
   text-align: center;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  padding: 1em;
+  border: var(--border-thickness) solid var(--border-color);
+  border-radius: 5px;
 }
 
 @media all and (max-width: 1000px) { /* on thinner displays, put sidebar above main content (weird layout-wise, but better than an ultra-thin sidebar). */
   #content {
-    flex-wrap: wrap;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 1fr 1fr;
   }
   
   #sidebar {
-    flex: 1 1 100%; /* force 100% width */
     max-width: 100%; /* overwrite sidebar max-width */
     height: auto; /* overwrite sidebar height */
   }
 
   #content-main {
-    flex: 3 1 100%; /* force 100% width */
+    grid-row-start: 2;
+    grid-column-start: 1; /* overwrite content column-start */
   }
 }
