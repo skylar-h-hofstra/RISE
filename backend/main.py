@@ -3,6 +3,8 @@ import json
 from urllib import request
 from urllib.request import Request, urlopen
 import time
+from bs4 import BeautifulSoup
+
 
 #url_main = "https://finance.yahoo.com/quote/{}?p={}"
 #url_hisorical = "https://finance.yahoo.com/quote/{}/history?p={}"
@@ -61,7 +63,25 @@ def parse_price():
     soup = bs4.BeautifulSoup(r.text, "html.parser")
     print(soup)
     #price = soup.find_all('div', {"class":"Fw(b) Fz(36px) Mb(-4px) D(ib)"})
-    #return price
+    #return price(
 """
 
-live_data_feed(stock)
+def parse_graph(ticker):
+    url='https://finance.yahoo.com/quote/'+ticker
+
+    print(url)
+    try:
+        headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'}
+        req = Request(url=url,headers=headers) 
+        resp = urlopen(req)    
+    except:
+        print("no link")
+    html = BeautifulSoup(resp, features="lxml")
+
+    for row in html.find_all('td'):
+        
+        print(row.text)
+        
+
+#live_data_feed(stock)
+parse_graph('TSLA')
