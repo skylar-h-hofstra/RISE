@@ -3,8 +3,11 @@
 import requests
 
 # replace the "demo" apikey below with your own key from https://www.alphavantage.co/support/#api-key
-url = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=A1CG6W2DT3G2A4W7'
+url = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=2AZ0R3B5JKBC14EQ'
 r = requests.get(url)
 data = r.json()
 
 print(data)
+
+
+
