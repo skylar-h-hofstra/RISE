@@ -21,7 +21,7 @@ def get_price(stock):
     webpage = urlopen(request_site)
     html_byte = webpage.read()
     html = html_byte.decode("utf-8")
-    pass_chart(html)
+    # pass_chart(html)
     #print(html)
 
 def pass_chart(file):
@@ -52,10 +52,11 @@ def live_data_feed(stock):
         get_price(stock)
         time.sleep(1)
 
-
-
 class DummyClass:
     pass
+
+get_price("TSLA")
+
 
 """
 def parse_price():
@@ -76,12 +77,31 @@ def parse_graph(ticker):
         resp = urlopen(req)    
     except:
         print("no link")
-    html = BeautifulSoup(resp, features="lxml")
+    html = BeautifulSoup(resp, features="html.parser")
 
     for row in html.find_all('td'):
         
         print(row.text)
-        
 
-#live_data_feed(stock)
-parse_graph('TSLA')
+def get_news(stock):
+    url='https://www.cnbc.com/quotes/' + stock + '?tab=news'
+    try:
+        headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'}
+        req = Request(url=url,headers=headers) 
+        resp = urlopen(req)    
+    except:
+        print("no link")
+    html = BeautifulSoup(resp, features="html.parser")
+
+    # for a in html.find_all('li', href=True):
+    #     print("Found the URL:", a['href'])
+    for row in html.find_all('a', class_='LatestNews-headline', href = True):
+        print(row.text)
+        print("Found the URL:", row['href'])
+    
+    
+
+        
+# parse_graph(stock)
+# live_data_feed(stock)
+get_news('AAPL')
