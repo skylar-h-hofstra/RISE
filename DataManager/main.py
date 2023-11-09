@@ -93,11 +93,10 @@ def get_news(stock):
         print("no link")
     html = BeautifulSoup(resp, features="html.parser")
 
-    # for a in html.find_all('li', href=True):
-    #     print("Found the URL:", a['href'])
+    #finds a class and finds the latest news while making sure href is true
     for row in html.find_all('a', class_='LatestNews-headline', href = True):
         print(row.text)
-        print("Found the URL:", row['href'])
+        print(row['href'])
     
     
 
