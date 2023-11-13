@@ -4,6 +4,7 @@ from urllib import request
 from urllib.request import Request, urlopen
 import time
 from bs4 import BeautifulSoup
+from openpyxl import load_workbook
 
 
 #url_main = "https://finance.yahoo.com/quote/{}?p={}"
@@ -51,6 +52,18 @@ def live_data_feed(stock):
     while True:
         get_price(stock)
         time.sleep(1)
+
+
+def getTickSymbol():
+    data_file = 'DataManager/NASDAQ List.csv' #the csv file 
+    wb = load_workbook(data_file) #loads the file 
+    ws = wb['NASDAQ List'] #loads the specific sheet
+    all_rows = list(ws.rows)    #gets the rows 
+    Tickers = []                # using a list? might not be good tho if we want to read thru it
+    for cell in all_rows[0]:    # first row, thats where the ticker symbols are 
+        Tickers.append(row.value)
+
+#https://ehmatthes.github.io/pcc_2e/beyond_pcc/extracting_from_excel/
 
 class DummyClass:
     pass
