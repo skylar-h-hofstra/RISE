@@ -5,22 +5,13 @@ import test
 class Stock:
     #Constructor
     def __init__(self, ticker):
-        self.ticker = ticker
         self.headers = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/114.0'}
-        self.url = f"https://finance.yahoo.com/quote/{ticker}?p={ticker}"
-        self.soup = self.get_soup()
-
-
-    def get_soup(self):
-        response = requests.get(self.url, headers=self.headers)
-        return BeautifulSoup(response.text, "html.parser")
-
-
-    def get_stock_price(self):
-        return self.soup.select_one(f'fin-streamer[data-field="regularMarketPrice"][data-symbol="{self.ticker}"]')
-
-    def print_soup(self):
-        print(self.soup)
+        self.update_stock(ticker)
+        
+    def update_stock(self, new_ticker):
+        self.update_ticker(new_ticker)
+        self.update_url()
+        self.update_soup()
 
     def update_ticker(self, new_ticker):
         self.ticker = new_ticker
@@ -31,11 +22,16 @@ class Stock:
     def update_soup(self):
         self.soup = self.get_soup()
 
-    def update_stock(self, new_ticker):
-        self.update_ticker(new_ticker)
-        self.update_url()
-        self.update_soup()
+    def get_soup(self):
+        response = requests.get(self.url, headers=self.headers)
+        return BeautifulSoup(response.text, "html.parser")
 
+    def print_soup(self):
+        print(self.soup)
+
+    def get_stock_price(self):
+        current = self.soup.select_one(f'fin-streamer[data-field="regularMarketPrice"][data-symbol="{self.ticker}"]')
+        return current['value']
 
 
 """ RESERVE: Working Current Price Function
