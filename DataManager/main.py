@@ -1,13 +1,20 @@
 from Stock import Stock
 
 
+s = Stock("TSLA")
+s.print_table()
+
+
+
+
+"""
 import re
 import json
 from urllib import request
 from urllib.request import Request, urlopen
 import time
 from bs4 import BeautifulSoup
-from openpyxl import load_workbookp
+#from openpyxl import load_workbookp
 def parse_graph(ticker):
     url='https://finance.yahoo.com/quote/'+ticker
 
@@ -24,6 +31,8 @@ def parse_graph(ticker):
         
         print(row.text)
 
+parse_graph("AAPL")
+"""
 
 
 """

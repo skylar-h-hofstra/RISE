@@ -1,12 +1,19 @@
 from bs4 import BeautifulSoup
 import requests
 import test
+from Table import Table
 
 class Stock:
     #Constructor
     def __init__(self, ticker):
+        self.ticker = ""
+        self.url = ""
+        self.soup = ""
+        self.current_price = -1
         self.headers = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/114.0'}
         self.update_stock(ticker)
+        self.Table = Table(self.get_table())
+
         
     def update_stock(self, new_ticker):
         self.update_ticker(new_ticker)
@@ -31,7 +38,20 @@ class Stock:
 
     def get_stock_price(self):
         current = self.soup.select_one(f'fin-streamer[data-field="regularMarketPrice"][data-symbol="{self.ticker}"]')
-        return current['value']
+        self.current_price = current['value']
+        return self.current_price
+    
+    def update_table(self):
+        self.Table.update_table(self.get_table())
+            
+    def get_table(self):
+        result = self.soup.find_all('td')
+        return result
+
+    def print_table(self):
+        self.Table.print_table()
+
+    #def get_graph_data()
 
 
 """ RESERVE: Working Current Price Function
@@ -43,6 +63,19 @@ class Stock:
         print(current['value'])
         #with open("") as fp:
         #    return BeautifulSoup(fp, "html.parser")
+"""
+
+""" RESERVE: Traversing Table Data
+counter = 0
+for row in result:
+    #Accesses Data Values
+    if counter % 2 == 1: 
+        print(row.text)
+    counter += 1
+
+    #Accesses Data Labels
+    if counter % 2 == 0: 
+        print(row.text)
 """
 
 """ TESTING: HTML Access and Soup Creation 
