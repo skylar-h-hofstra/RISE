@@ -2,30 +2,42 @@ from bs4 import BeautifulSoup
 import requests
 import test
 from Table import Table
+from Graph import Graph
 
 class Stock:
     #Constructor
     def __init__(self, ticker):
+        #Base Stock Attributes
         self.ticker = ""
         self.url = ""
         self.soup = ""
         self.current_price = -1
         self.headers = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/114.0'}
-        self.update_stock(ticker)
-        self.Table = Table(self.get_table())
 
-        
+        self.Table = Table("")
+
+        self.Graph = Graph("", "", "")
+
+        #Initializer Call
+        self.update_stock(ticker)
+
+    #Stock Initializer/Update Function
     def update_stock(self, new_ticker):
         self.update_ticker(new_ticker)
         self.update_url()
         self.update_soup()
+        self.update_table()
+        self.update_graph("2m", "1d")
 
+    #Ticker:
     def update_ticker(self, new_ticker):
         self.ticker = new_ticker
 
+    #URL:
     def update_url(self):
         self.url = f"https://finance.yahoo.com/quote/{self.ticker}?p={self.ticker}"
 
+    #Soup:
     def update_soup(self):
         self.soup = self.get_soup()
 
@@ -33,14 +45,7 @@ class Stock:
         response = requests.get(self.url, headers=self.headers)
         return BeautifulSoup(response.text, "html.parser")
 
-    def print_soup(self):
-        print(self.soup)
-
-    def get_stock_price(self):
-        current = self.soup.select_one(f'fin-streamer[data-field="regularMarketPrice"][data-symbol="{self.ticker}"]')
-        self.current_price = current['value']
-        return self.current_price
-    
+    #Table:    
     def update_table(self):
         self.Table.update_table(self.get_table())
             
@@ -48,11 +53,31 @@ class Stock:
         result = self.soup.find_all('td')
         return result
 
+    #Graph:
+    def update_graph(self, interval, range):
+        self.interval = interval
+        self.range = range
+        self.Graph.update_graph(self.ticker, self.interval, self.range)
+
+
+
+
+    #DEBUGGING: Used to Interpret Soup Contents
+    def print_soup(self):
+        print(self.soup)
+
+    #Stock Price Function:
+    def get_stock_price(self):
+        current = self.soup.select_one(f'fin-streamer[data-field="regularMarketPrice"][data-symbol="{self.ticker}"]')
+        self.current_price = current['value']
+        return self.current_price
+
+    #DEBUGGING: Used to Interpret Table Data Output
     def print_table(self):
         self.Table.print_table()
 
-    #def get_graph_data()
-
+    def print_graph(self):
+        self.Graph.update_graph_json()
 
 """ RESERVE: Working Current Price Function
     def pull_data(self):

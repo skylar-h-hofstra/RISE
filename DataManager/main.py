@@ -2,7 +2,7 @@ from Stock import Stock
 
 
 s = Stock("TSLA")
-s.print_table()
+s.print_graph()
 
 
 

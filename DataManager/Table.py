@@ -47,20 +47,21 @@ class Table:
             print(self.table_headers[number] + ": " + self.table_data[number])
 
     def update_table(self, result):
-        counter = 1
-        itr_header = 0
-        itr_data = 0
-        
-        for row in result:
-            #Accesses Header Values
-            if counter % 2 == 1:
-                self.table_headers[itr_header] = row.text
-                itr_header += 1
+        if result != "":
+            counter = 1
+            itr_header = 0
+            itr_data = 0
+            
+            for row in result:
+                #Accesses Header Values
+                if counter % 2 == 1:
+                    self.table_headers[itr_header] = row.text
+                    itr_header += 1
 
-            #Accesses Data Values
-            if counter % 2 == 0: 
-                self.table_data[itr_data] = row.text
-                itr_data += 1
+                #Accesses Data Values
+                if counter % 2 == 0: 
+                    self.table_data[itr_data] = row.text
+                    itr_data += 1
 
-            #Increment Counter
-            counter += 1
+                #Increment Counter
+                counter += 1
