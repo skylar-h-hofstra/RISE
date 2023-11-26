@@ -95,6 +95,10 @@ def parse_graph(ticker):
     for row in html.find_all('td'):
         
         print(row.text)
+        
+
+#live_data_feed(stock)
+parse_graph('TSLA')
 
 def get_news(stock):
     url='https://www.cnbc.com/quotes/' + stock + '?tab=news'
