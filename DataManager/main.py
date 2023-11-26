@@ -22,7 +22,7 @@ def get_price(stock):
     webpage = urlopen(request_site)
     html_byte = webpage.read()
     html = html_byte.decode("utf-8")
-    # pass_chart(html)
+    pass_chart(html)
     #print(html)
 
 def pass_chart(file):
@@ -65,11 +65,11 @@ def getTickSymbol():
 
 #https://ehmatthes.github.io/pcc_2e/beyond_pcc/extracting_from_excel/
 
+
 class DummyClass:
     pass
 
 get_price("TSLA")
-
 
 """
 def parse_price():
