@@ -1,3 +1,16 @@
+# Required Installations:
+- nvm
+- npm
+- Node.js
+- firebase
+- firebase-tools
+- pip
+- BeautifulSoup
+- requests
+- json
+- jsonpickle
+
+
 # RISE
 Ideal Workflows: Staggering refers to multiple calls by a given item
 
