@@ -1,5 +1,5 @@
 class Table:
-    def __init__(self, result):
+    def __init__(self, result: str):
         """ RESERVE: Previous attempt at storing data (too many moving parts, hard to organize)
         self.previous_close = ""
         self.open = ""

@@ -2,7 +2,7 @@ import requests
 from urllib.request import Request, urlopen
 
 class Graph:
-    def __init__(self, ticker, interval, range):
+    def __init__(self, ticker: str, interval: str, range: str):
         self.ticker = ""
         self.interval = ""
         self.range = ""
