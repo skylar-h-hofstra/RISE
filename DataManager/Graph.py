@@ -2,6 +2,8 @@ import requests
 from urllib.request import Request, urlopen
 
 class Graph:
+    #def __dict__()
+    
     def __init__(self, ticker: str, interval: str, range: str):
         self.ticker = ""
         self.interval = ""
@@ -20,6 +22,7 @@ class Graph:
         self.update_graph_interval(interval)
         self.update_graph_range(range)
         self.update_graph_url()
+        self.update_graph_json()
 
     def update_graph_ticker(self, ticker):
         self.ticker = ticker
@@ -37,4 +40,4 @@ class Graph:
         data_request = Request(self.graph_url, headers=self.headers)
         page = urlopen(data_request)
         self.graph_json = page.read().decode("utf-8")
-        print(self.graph_json)
+        #print(self.graph_json)

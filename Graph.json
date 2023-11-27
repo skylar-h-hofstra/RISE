@@ -1,0 +1,10 @@
+{
+    "ticker": "MSFT",
+    "interval": "60m",
+    "range": "1d",
+    "graph_url": "https://query1.finance.yahoo.com/v8/finance/chart/MSFT?region=US&lang=en-US&includePrePost=false&interval=60m&useYfid=true&range=1d&corsDomain=finance.yahoo.com&.tsrc=finance",
+    "headers": {
+        "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/114.0"
+    },
+    "graph_json": "{\"chart\":{\"result\":[{\"meta\":{\"currency\":\"USD\",\"symbol\":\"MSFT\",\"exchangeName\":\"NMS\",\"instrumentType\":\"EQUITY\",\"firstTradeDate\":511108200,\"regularMarketTime\":1701101026,\"gmtoffset\":-18000,\"timezone\":\"EST\",\"exchangeTimezoneName\":\"America/New_York\",\"regularMarketPrice\":377.7,\"chartPreviousClose\":377.43,\"previousClose\":377.43,\"scale\":3,\"priceHint\":2,\"currentTradingPeriod\":{\"pre\":{\"timezone\":\"EST\",\"start\":1701075600,\"end\":1701095400,\"gmtoffset\":-18000},\"regular\":{\"timezone\":\"EST\",\"start\":1701095400,\"end\":1701118800,\"gmtoffset\":-18000},\"post\":{\"timezone\":\"EST\",\"start\":1701118800,\"end\":1701133200,\"gmtoffset\":-18000}},\"tradingPeriods\":[[{\"timezone\":\"EST\",\"start\":1701095400,\"end\":1701118800,\"gmtoffset\":-18000}]],\"dataGranularity\":\"1h\",\"range\":\"1d\",\"validRanges\":[\"1d\",\"5d\",\"1mo\",\"3mo\",\"6mo\",\"1y\",\"2y\",\"5y\",\"10y\",\"ytd\",\"max\"]},\"timestamp\":[1701095400,1701099000,1701101026],\"indicators\":{\"quote\":[{\"close\":[376.9599914550781,377.8349914550781,377.70001220703125],\"open\":[376.7799987792969,376.9599914550781,377.70001220703125],\"volume\":[4261920,1043023,0],\"low\":[376.20001220703125,376.94000244140625,377.70001220703125],\"high\":[378.17999267578125,378.1449890136719,377.70001220703125]}]}}],\"error\":null}}"
+}

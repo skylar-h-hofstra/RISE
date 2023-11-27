@@ -5,6 +5,14 @@ from Table import Table
 from Graph import Graph
 
 class Stock:
+    def __iter__(self):
+        return iter([
+            ('ticker', self.ticker),
+            ('url', self.url),
+            ('current_price', self.current_price),
+            ('headers', self.headers)
+        ])
+    
     #Constructor
     def __init__(self, ticker):
         #Base Stock Attributes
@@ -14,9 +22,9 @@ class Stock:
         self.current_price = -1
         self.headers = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/114.0'}
 
-        self.Table = Table("")
+        self.Table = None
 
-        self.Graph = Graph("", "", "")
+        self.Graph = None
 
         #Initializer Call
         self.update_stock(ticker)
@@ -39,7 +47,7 @@ class Stock:
 
     #Soup:
     def update_soup(self):
-        self.soup = self.get_soup()
+        self.soup = str(self.get_soup())
 
     def get_soup(self):
         response = requests.get(self.url, headers=self.headers)
@@ -47,17 +55,23 @@ class Stock:
 
     #Table:    
     def update_table(self):
-        self.Table.update_table(self.get_table())
+        if self.Table == None:
+            self.Table = Table(self.get_table())
+        else:
+            self.Table.update_table(self.get_table())
             
     def get_table(self):
-        result = self.soup.find_all('td')
+        result = BeautifulSoup(self.soup, "html.parser").find_all('td')
         return result
 
     #Graph:
     def update_graph(self, interval, range):
         self.interval = interval
         self.range = range
-        self.Graph.update_graph(self.ticker, self.interval, self.range)
+        if self.Graph == None:
+            self.Graph = Graph(self.ticker, self.interval, self.range)
+        else:
+            self.Graph.update_graph(self.ticker, self.interval, self.range)
 
 
 

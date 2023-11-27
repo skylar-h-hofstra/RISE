@@ -1,11 +1,34 @@
 from Stock import Stock
+import json
 
+print("REACHED 0")
 
-s = Stock("TSLA")
-s.print_graph()
+s = Stock("MSFT")
+#s.Graph.update_graph_json()
+#s.print_graph()
 
+s.update_graph("60m", "1d")
 
+print("REACHED 1")
 
+with open("Graph.json", 'w') as f:
+    print("REACHED 2")
+    str = json.dump(s.Graph.__dict__, f, indent=4)
+    print(json.dumps(s.Graph.__dict__, indent=4))
+
+print("REACHED 3")
+
+with open("Table.json", 'w') as f:
+    print("REACHED 4")
+    str = json.dump(s.Table.__dict__, f, indent=4)
+
+print("REACHED 5")
+
+with open("Stock.json", 'w') as f:
+    print("REACHED 6")
+    str = json.dump(dict(s), f, indent=4)
+
+print("REACHED 7")
 
 """
 import re

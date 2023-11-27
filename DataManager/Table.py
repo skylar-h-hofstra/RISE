@@ -1,5 +1,5 @@
 class Table:
-    def __init__(self, result: str):
+    def __init__(self, result):
         """ RESERVE: Previous attempt at storing data (too many moving parts, hard to organize)
         self.previous_close = ""
         self.open = ""
@@ -51,6 +51,9 @@ class Table:
             counter = 1
             itr_header = 0
             itr_data = 0
+
+            #DEBUGGING
+            #print(result)
             
             for row in result:
                 #Accesses Header Values
