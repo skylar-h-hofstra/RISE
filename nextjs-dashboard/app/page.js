@@ -1,19 +1,5 @@
 import Image from 'next/image'
 
-//"use-client"
-
-/*
-Incremental Static Generation (ISR)
-
-async function Page ({ params }) {
-  const res = await fetch(
-    '__URL__',
-    { next: { revalidate: 10 } } //revalidates data every 10 seconds
-  )
-}
-*/
-
-
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
